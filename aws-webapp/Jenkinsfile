@@ -21,7 +21,7 @@ pipeline {
                 success {
                     archiveArtifacts 'target/*.jar'
                     sh 'aws configure set region ap-southeast-2'
-                    sh 'aws s3 cp ./target/SampleWebApp.war s3://YOUR-BUCKET-NAME/SampleWebApp.war'
+                    sh 'aws s3 cp ./target/SampleWebApp.war s3://webapp-storage-509384/SampleWebApp.war'
                 }
             }
         }
