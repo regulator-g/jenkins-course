@@ -1,0 +1,29 @@
+pipeline {
+    agent any 
+
+     environment {
+        AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+    }      
+
+    stages {
+        stage('Build') {
+            // build stage
+        }
+        stage('Test') {
+           // test stage
+        }
+        stage('Publish') {
+            steps {
+                sh './mvnw package'
+            }
+            post {
+                success {
+                    archiveArtifacts 'target/*.jar'
+                    sh 'aws configure set region ap-southeast-2'
+                    sh 'aws s3 cp ./target/SampleWebApp.war s3://YOUR-BUCKET-NAME/SampleWebApp.war'
+                }
+            }
+        }
+    }
+}
