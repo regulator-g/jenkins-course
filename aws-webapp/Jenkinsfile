@@ -7,10 +7,10 @@ pipeline {
     }      
 
     stages {
-        stage('Build') {
+        //stage('Build') {
             // build stage
         }
-        stage('Test') {
+        //stage('Test') {
            // test stage
         }
         stage('Publish') {
